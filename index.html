@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Learning Cytoscape.js</title>
+        <style type="text/css">
+            /* cytoscape graph */
+            #cy {
+                height: 300px;
+                width: 400px;
+                background-color: #f9f9f9;
+            }
+        </style>
+        <script src="cytoscape.min.js"></script>
+    </head>
+    <body>
+        <div id="cy"></div>
+
+    </body>    
+        
+    <script>
+        var cy = cytoscape({
+            container: document.getElementById('cy'), // container to render in
+
+            elements: [ // list of graph elements to start with
+                { // node a
+                    data: { id: 'a' }
+                },
+                { // node b
+                    data: { id: 'b' }
+                },
+                { // node c
+                    data: { id: 'c' }
+                },
+                { // node d
+                    data: { id: 'd' }
+                },
+                { // edge ab
+                    data: { id: 'ab', source: 'a', target: 'b' }
+                },
+                { // edge ab
+                    data: { id: 'ac', source: 'a', target: 'c' }
+                },
+                { // edge ab
+                    data: { id: 'ad', source: 'a', target: 'd' }
+                },
+            ],
+            style: [ // the stylesheet for the graph
+                {
+                    selector: 'node',
+                    style: {
+                    'background-color': '#bbb',
+                    'label': 'data(id)'
+                    }
+                },
+                {
+                    selector: 'edge',
+                    style: {
+                    'width': 3,
+                    'line-color': '#ccc',
+                    'target-arrow-color': '#ccc',
+                    'target-arrow-shape': 'triangle'
+                    }
+                }
+            ],
+
+            layout: {
+                name: 'grid',
+                rows: 1
+            }
+
+        });
+
+        // can use reference to eles later
+        var eles = cy.add([
+            { group: 'nodes', data: { id: 'n0' }, position: { x: 100, y: 100 } },
+            { group: 'nodes', data: { id: 'n1' }, position: { x: 200, y: 200 } },
+            { group: 'edges', data: { id: 'e0', source: 'n0', target: 'n1' } }
+        ]);
+
+        var collection = cy.collection();
+            cy.nodes().on('click', function(e){
+            var clickedNode = e.target;
+            collection = collection.union(clickedNode);
+        });
+
+        //cy.zoom({
+        //    level: 2.0, // the zoom level
+        //    renderedPosition: { x: 100, y: 100 }
+        //});
+
+        //cy.viewport({
+        //    zoom: 2,
+        //    pan: { x: 100, y: 100 }
+        //});
+
+        //cy.animate({
+        //    pan: { x: 100, y: 100 },
+        //    zoom: 2
+        //}, {
+        //    duration: 1000  
+        //});
+
+        //cy.nodes().animate({
+        //        style: { 'background-color': 'blue' } }, 
+        //    {
+        //        duration: 5000
+        //    }).delay( 1000 ).animate({
+        //        style: { 'background-color': 'yellow' }
+        //});
+
+
+        
+        var layout = cy.layout({ name: 'cose' });
+        layout.run();
+
+        var jAni = cy.$('[source = "a"]').animation({
+            style: {
+                'background-color': 'red',
+                'width': 75
+            },
+            duration: 1000
+        });
+        //jAni.play();
+        
+        //nodes click event
+        var collection = cy.collection();
+            cy.nodes().on('click', function(e){
+                var clickedNode = e.target;
+                collection = collection.union(clickedNode);
+
+                cy.style()
+                //.resetToDefault() // start a fresh default stylesheet
+                // and then define new styles
+                .selector('node')
+                    .style('background-color', 'magenta')
+                // ...
+                .update(); // indicate the end of your new stylesheet so that it can be updated on elements         
+
+        });
+
+
+    </script>
+    
+</html>
