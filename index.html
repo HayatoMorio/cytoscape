@@ -1,240 +1,187 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-      <title>Tutorial 1: Getting Started</title>
-      <script src='cytoscape.min.js'></script>
+    <head>
+        <meta charset="utf-8">
+        <title>Learning Cytoscape.js</title>
+        <style type="text/css">
+            /* cytoscape graph */
+            #cy {
+                height: 300px;
+                width: 400px;
+                background-color: #f9f9f9;
+            }
+        </style>
+        <script src="cytoscape.min.js"></script>
+    </head>
+    <body>
+        <div id="cy"></div>
 
-  <style>
-      #cy {
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          top: 30x;
-          left: 0px;
-      }
-  </style>
-
-  </head>
-  <body>
-    
-      <div id="search-wrapper">
-        <input type="text" class="form-control" id="search" placeholder="&#xf002; Search">
-      </div>
-
-      <div id="cy"></div>
-
-    <script>
-
-      var cy = cytoscape({
-        container: document.getElementById('cy'),
-        elements: [
-          // nodes
-          {"data":{"id":"G11310_S-BPDA(半)", "name":"G11310"} },
-          {"data":{"id":"G1136155_S-BPTA乾燥･篩(半)", "name":"G1136155"} },
-          {"data":{"id":"GZT257200_電力総合", "name":"GZT257200"} },
-          {"data":{"id":"GZT257600_昇圧原水", "name":"GZT257600"} },
-          {"data":{"id":"GZT257760_計装AIR", "name":"GZT257760"} },
-          {"data":{"id":"GZT257760_計装AIR", "name":"GZT257760"} },
-          {"data":{"id":"GZT257770_窒素ガス", "name":"GZT257770"} },
-          {"data":{"id":"GZT257200_電力総合", "name":"GZT257200"} },
-          {"data":{"id":"GZT257200_電力総合", "name":"GZT257200"} },
-          {"data":{"id":"GZT257770_窒素ガス", "name":"GZT257770"} },
-          {"data":{"id":"GZT257760_計装AIR", "name":"GZT257760"} },
-          {"data":{"id":"G1103606_堺_S-BPTA(融通受)", "name":"G1103606"} },
-          {"data":{"id":"GZT257760_計装AIR", "name":"GZT257760"} },
-          {"data":{"id":"GZT257770_窒素ガス", "name":"GZT257770"} },
-          {"data":{"id":"GZT257200_電力総合", "name":"GZT257200"} },
-          {"data":{"id":"GZT257200_電力総合", "name":"GZT257200"} },
-          {"data":{"id":"GZT257770_窒素ガス", "name":"GZT257770"} },
-          {"data":{"id":"GZT257760_計装AIR", "name":"GZT257760"} },
-          {"data":{"id":"GZT257760_計装AIR", "name":"GZT257760"} },
-          {"data":{"id":"GZT257770_窒素ガス", "name":"GZT257770"} },
-          {"data":{"id":"GZT257200_電力総合", "name":"GZT257200"} },
-          {"data":{"id":"G1103606_堺_S-BPTA(融通受)", "name":"G1103606"} },
-          {"data":{"id":"G1103625_堺_工業用水(ﾎﾟﾘｲﾐﾄﾞ)", "name":"G1103625"} },
-          {"data":{"id":"G1103605_堺_S-BPDA(融通受)", "name":"G1103605"} },
-          {"data":{"id":"G1103631_堺_SEP調合液", "name":"G1103631"} },
-          {"data":{"id":"GZT257200_電力総合", "name":"GZT257200"} },
-          {"data":{"id":"GZT257770_窒素ガス", "name":"GZT257770"} },
-          {"data":{"id":"GZT257760_計装AIR", "name":"GZT257760"} },
-          {"data":{"id":"GZT257760_計装AIR", "name":"GZT257760"} },
-          {"data":{"id":"GZT257770_窒素ガス", "name":"GZT257770"} },
-          {"data":{"id":"GZT257200_電力総合", "name":"GZT257200"} },
-          {"data":{"id":"G1103631_堺_SEP調合液", "name":"G1103631"} },
-          {"data":{"id":"G1103632_堺_TA調合液", "name":"G1103632"} },
-
-          // edges
-          {data:{id:"S-BPDA(半)_堺_S-BPDA(融通受)",source:"G11310_S-BPDA(半)",target:"G1103605_堺_S-BPDA(融通受)"}},
-          {data:{id:"S-BPTA乾燥･篩(半)_堺_S-BPTA(融通受)",source:"G1136155_S-BPTA乾燥･篩(半)",target:"G1103606_堺_S-BPTA(融通受)"}},
-          {data:{id:"電力総合_堺_工業用水(ﾎﾟﾘｲﾐﾄﾞ)",source:"GZT257200_電力総合",target:"G1103625_堺_工業用水(ﾎﾟﾘｲﾐﾄﾞ)"}},
-          {data:{id:"昇圧原水_堺_工業用水(ﾎﾟﾘｲﾐﾄﾞ)",source:"GZT257600_昇圧原水",target:"G1103625_堺_工業用水(ﾎﾟﾘｲﾐﾄﾞ)"}},
-          {data:{id:"計装AIR_堺_工業用水(ﾎﾟﾘｲﾐﾄﾞ)",source:"GZT257760_計装AIR",target:"G1103625_堺_工業用水(ﾎﾟﾘｲﾐﾄﾞ)"}},
-          {data:{id:"計装AIR_堺_SEP調合液",source:"GZT257760_計装AIR",target:"G1103631_堺_SEP調合液"}},
-          {data:{id:"窒素ガス_堺_SEP調合液",source:"GZT257770_窒素ガス",target:"G1103631_堺_SEP調合液"}},
-          {data:{id:"電力総合_堺_SEP調合液",source:"GZT257200_電力総合",target:"G1103631_堺_SEP調合液"}},
-          {data:{id:"電力総合_堺_TA調合液",source:"GZT257200_電力総合",target:"G1103632_堺_TA調合液"}},
-          {data:{id:"窒素ガス_堺_TA調合液",source:"GZT257770_窒素ガス",target:"G1103632_堺_TA調合液"}},
-          {data:{id:"計装AIR_堺_TA調合液",source:"GZT257760_計装AIR",target:"G1103632_堺_TA調合液"}},
-          {data:{id:"堺_S-BPTA(融通受)_堺_TA調合液",source:"G1103606_堺_S-BPTA(融通受)",target:"G1103632_堺_TA調合液"}},
-          {data:{id:"計装AIR_堺_ST-ZL(FIL)調合液",source:"GZT257760_計装AIR",target:"G1103633_堺_ST-ZL(FIL)調合液"}},
-          {data:{id:"窒素ガス_堺_ST-ZL(FIL)調合液",source:"GZT257770_窒素ガス",target:"G1103633_堺_ST-ZL(FIL)調合液"}},
-          {data:{id:"電力総合_堺_ST-ZL(FIL)調合液",source:"GZT257200_電力総合",target:"G1103633_堺_ST-ZL(FIL)調合液"}},
-          {data:{id:"電力総合_堺_GA塗工液",source:"GZT257200_電力総合",target:"G1103634_堺_GA塗工液"}},
-          {data:{id:"窒素ガス_堺_GA塗工液",source:"GZT257770_窒素ガス",target:"G1103634_堺_GA塗工液"}},
-          {data:{id:"計装AIR_堺_GA塗工液",source:"GZT257760_計装AIR",target:"G1103634_堺_GA塗工液"}},
-          {data:{id:"計装AIR_堺_Rﾄﾞｰﾌﾟ",source:"GZT257760_計装AIR",target:"G1103635_堺_Rﾄﾞｰﾌﾟ"}},
-          {data:{id:"窒素ガス_堺_Rﾄﾞｰﾌﾟ",source:"GZT257770_窒素ガス",target:"G1103635_堺_Rﾄﾞｰﾌﾟ"}},
-          {data:{id:"電力総合_堺_Rﾄﾞｰﾌﾟ",source:"GZT257200_電力総合",target:"G1103635_堺_Rﾄﾞｰﾌﾟ"}},
-          {data:{id:"堺_S-BPTA(融通受)_堺_Rﾄﾞｰﾌﾟ",source:"G1103606_堺_S-BPTA(融通受)",target:"G1103635_堺_Rﾄﾞｰﾌﾟ"}},
-          {data:{id:"堺_工業用水(ﾎﾟﾘｲﾐﾄﾞ)_堺_Rﾄﾞｰﾌﾟ",source:"G1103625_堺_工業用水(ﾎﾟﾘｲﾐﾄﾞ)",target:"G1103635_堺_Rﾄﾞｰﾌﾟ"}},
-          {data:{id:"堺_S-BPDA(融通受)_堺_Rﾄﾞｰﾌﾟ",source:"G1103605_堺_S-BPDA(融通受)",target:"G1103635_堺_Rﾄﾞｰﾌﾟ"}},
-          {data:{id:"堺_SEP調合液_堺_Rﾄﾞｰﾌﾟ",source:"G1103631_堺_SEP調合液",target:"G1103635_堺_Rﾄﾞｰﾌﾟ"}},
-          {data:{id:"電力総合_堺_触媒調合液",source:"GZT257200_電力総合",target:"G1103636_堺_触媒調合液"}},
-          {data:{id:"窒素ガス_堺_触媒調合液",source:"GZT257770_窒素ガス",target:"G1103636_堺_触媒調合液"}},
-          {data:{id:"計装AIR_堺_触媒調合液",source:"GZT257760_計装AIR",target:"G1103636_堺_触媒調合液"}},
-          {data:{id:"計装AIR_堺_Sﾄﾞｰﾌﾟ",source:"GZT257760_計装AIR",target:"G1103641_堺_Sﾄﾞｰﾌﾟ"}},
-          {data:{id:"窒素ガス_堺_Sﾄﾞｰﾌﾟ",source:"GZT257770_窒素ガス",target:"G1103641_堺_Sﾄﾞｰﾌﾟ"}},
-          {data:{id:"電力総合_堺_Sﾄﾞｰﾌﾟ",source:"GZT257200_電力総合",target:"G1103641_堺_Sﾄﾞｰﾌﾟ"}},
-          {data:{id:"堺_SEP調合液_堺_Sﾄﾞｰﾌﾟ",source:"G1103631_堺_SEP調合液",target:"G1103641_堺_Sﾄﾞｰﾌﾟ"}},
-          {data:{id:"堺_TA調合液_堺_Sﾄﾞｰﾌﾟ",source:"G1103632_堺_TA調合液",target:"G1103641_堺_Sﾄﾞｰﾌﾟ"}},
-
-        ],
+    </body>    
         
-        style: [
-            {
-              selector: 'node',
-              style: {
-                shape: 'hexagon',
-                'background-color': 'red',
-                label: 'data(id)'
-              }
-              
-            },
-            {
-              selector: 'edge',
-              style: {
-                'width': 5,
-                'arrow-scale' : 10,
-                "curve-style": "bezier",
-                "target-arrow-shape" : "triangle",
-                label: 'data(id)'                
-              }
-            },
+    <script>
+        var cy = cytoscape({
+            container: document.getElementById('cy'), // container to render in
 
-            //
-            {
-                selector: 'node.highlight',
-                style: {
-                    'border-color': 'red',
-                    'background-color': 'red',
-                    'border-width': '2px'
+            elements: [ // list of graph elements to start with
+                { // node a
+                    data: { id: 'G11310_S-BPDA(半)' }
+                },
+                { // node b
+                    data: { id: 'b' }
+                },
+                { // node c
+                    data: { id: 'c' }
+                },
+                { // node d
+                    data: { id: 'd' }
+                },
+                { // edge ab
+                    data: { id: 'ab', source: 'G11310_S-BPDA(半)', target: 'b' }
+                },
+                { // edge ab
+                    data: { id: 'ac', source: 'G11310_S-BPDA(半)', target: 'c' }
+                },
+                { // edge ab
+                    data: { id: 'ad', source: 'G11310_S-BPDA(半)', target: 'd' }
+                },
+            ],
+            style: [ // the stylesheet for the graph
+                {
+                    selector: 'node',
+                    style: {
+                    'background-color': '#bbb',
+                    'label': 'data(id)'
+                    }
+                },
+                {
+                    selector: 'edge',
+                    style: {
+                    'width': 3,
+                    'line-color': '#ccc',
+                    "curve-style": "bezier",
+                    'target-arrow-color': '#ccc',
+                    'target-arrow-shape': 'triangle'
+                    }
+                },
+
+                //
+                {
+                    selector: 'node.highlight',
+                    style: {
+                        'border-color': 'red',
+                        'background-color': 'red',
+                        'border-width': '2px'
+                    }
+                },
+                {
+                    selector: 'node.semitransp',
+                    style:{ 'opacity': '0.5'}
+                },
+                {
+                    selector: 'edge.highlight',
+                    style: { 'target-arrow-color': 'black', 'line-color': 'black'  }
+                },
+                {
+                    selector: 'edge.semitransp',
+                    style:{ 'opacity': '0.2'}
                 }
-            },
-            {
-                selector: 'node.semitransp',
-                style:{ 'opacity': '0.5'}
-            },
-            {
-                selector: 'edge.highlight',
-                style: { 'target-arrow-color': 'black', 'line-color': 'black'  }
-            },
-            {
-                selector: 'edge.semitransp',
-                style:{ 'opacity': '0.2'}
+            ],
+
+            layout: {
+                name: 'grid',
+                rows: 1
             }
 
-          ],
-        layout: {
-          name: 'breadthfirst'
-      }      
-      });
+        });
 
-      cy.layout({
-          name: 'breadthfirst'
-      }).run();
+        // can use reference to eles later
+        var eles = cy.add([
+            { group: 'nodes', data: { id: 'n0' }, position: { x: 100, y: 100 } },
+            { group: 'nodes', data: { id: 'n1' }, position: { x: 200, y: 200 } },
+            { group: 'edges', data: { id: 'e0', source: 'n0', target: 'n1' } }
+        ]);
 
-      //cy.filter('[id = "G1103606_堺_S-BPTA(融通受)"]');
+        var collection = cy.collection();
+            cy.nodes().on('click', function(e){
+            var clickedNode = e.target;
+            collection = collection.union(clickedNode);
+        });
+
+        //cy.zoom({
+        //    level: 2.0, // the zoom level
+        //    renderedPosition: { x: 100, y: 100 }
+        //});
+
+        //cy.viewport({
+        //    zoom: 2,
+        //    pan: { x: 100, y: 100 }
+        //});
+
+        //cy.animate({
+        //    pan: { x: 100, y: 100 },
+        //    zoom: 2
+        //}, {
+        //    duration: 1000  
+        //});
+
+        //cy.nodes().animate({
+        //        style: { 'background-color': 'blue' } }, 
+        //    {
+        //        duration: 5000
+        //    }).delay( 1000 ).animate({
+        //        style: { 'background-color': 'yellow' }
+        //});
+
+
+        
+        var layout = cy.layout({ name: 'cose' });
+        layout.run();
+
+        //var jAni = cy.$('[source = "a"]').animation({
+        //    style: {
+        //        'background-color': 'red',
+        //        'width': 75
+        //    },
+        //    duration: 1000
+        //});
+        //jAni.play();
+        
+        //nodes click event
+        //var collection = cy.collection();
+        //    cy.nodes().on('click', function(e){
+        //        var clickedNode = e.target;
+        //        collection = collection.union(clickedNode);
 //
+        //        cy.style()
+        //        //.resetToDefault() // start a fresh default stylesheet
+        //        // and then define new styles
+        //        .selector('node')
+        //        .style('background-color', 'magenta')
+        //        .selector('node')
+        //        .style('background-color', 'magenta')
+        //        // ...
+        //        .update(); // indicate the end of your new stylesheet so that it can be updated on elements         
 //
-      //var nodes = cy.nodes().filter(function(ele) {
-      //  if (ele.data('id').indexOf(name) > -1) {
-      //    return ele
-      //  }
-      //});
+        //});
+
+        //var collection = cy.collection();
+        //    cy.nodes().on('click', function(e){
+        //        var clickedNode = e.target;
+        //        collection = collection.union(clickedNode);
+        //        cy.style()
+        //        .selector('node')
+        //            .style('background-color', 'magenta')                
+        //});
+
+
+        //cy.on('tap', 'node', function(evt){
+        //    var node = evt.target;
+        //    var hoge = cy.nodes()
 //
+        //    alert( 'tapped ' + node.id() );
+        //});
 
-      //cy.on('mouseover', 'node', function(evt){
-      //  var sel = evt.target;
-      //  cy.elements().difference(sel.successors()).not(sel).addClass('semitransp');
-      //  sel.addClass('highlight').successors().addClass('highlight');
-      //});
-      //cy.on('mouseout', 'node', function(evt){
-      //  var sel = evt.target;
-      //  cy.elements().removeClass('semitransp');
-      //  sel.removeClass('highlight').successors().removeClass('highlight');
-      //});
-
-
-      //CheeseAndWine
-      //var lastSearch = '';
-//
-      //$('#search').typeahead({
-      //  minLength: 2,
-      //  highlight: true,
-      //},
-      //{
-      //  name: 'search-dataset',
-      //  source: function( query, cb ){
-      //    function matches( str, q ){
-      //      str = (str || '').toLowerCase();
-      //      q = (q || '').toLowerCase();
-      //      return str.match( q );
-      //    }
-      //    var fields = ['name', 'NodeType', 'Country', 'Type', 'Milk'];
-      //    function anyFieldMatches( n ){
-      //      for( var i = 0; i < fields.length; i++ ){
-      //        var f = fields[i];
-      //        if( matches( n.data(f), query ) ){
-      //          return true;
-      //        }
-      //      }
-      //      return false;
-      //    }
-      //    function getData(n){
-      //      var data = n.data();
-      //      return data;
-      //    }
-      //    function sortByName(n1, n2){
-      //      if( n1.data('name') < n2.data('name') ){
-      //        return -1;
-      //      } else if( n1.data('name') > n2.data('name') ){
-      //        return 1;
-      //      }
-      //      return 0;
-      //    }
-      //    var res = allNodes.stdFilter( anyFieldMatches ).sort( sortByName ).map( getData );
-      //    cb( res );
-      //  },
-      //  templates: {
-      //    suggestion: infoTemplate
-      //  }
-      //}).on('typeahead:selected', function(e, entry, dataset){
-      //  var n = cy.getElementById(entry.id);
-      //  cy.batch(function(){
-      //    allNodes.unselect();
-      //    n.select();
-      //  });
-      //  showNodeInfo( n );
-      //}).on('keydown keypress keyup change', _.debounce(function(e){
-      //  var thisSearch = $('#search').val();
-      //  if( thisSearch !== lastSearch ){
-      //    $('.tt-dropdown-menu').scrollTop(0);
-      //    lastSearch = thisSearch;
-      //  }
-      //}, 50));
-
-
-      cy.on('mouseover', 'node', function(e) {
+        cy.on('mouseover', 'node', function(e) {
             var sel = e.target;
             cy.elements()
                 .difference(sel.outgoers()
@@ -255,6 +202,7 @@
                 .union(sel.incomers())
                 .removeClass('highlight');
         });
+        
     </script>
-  </body>
+    
 </html>
